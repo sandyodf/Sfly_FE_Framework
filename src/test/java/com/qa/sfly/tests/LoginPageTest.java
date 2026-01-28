@@ -1,4 +1,4 @@
-package com.qa.sfly.Tests;
+package com.qa.sfly.tests;
 
 public class LoginPageTest {
 }

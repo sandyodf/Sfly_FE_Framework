@@ -1,4 +1,4 @@
-package com.qa.sfly.Base;
+package com.qa.sfly.base;
 
 public class BaseTest {
 }

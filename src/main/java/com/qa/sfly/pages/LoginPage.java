@@ -1,4 +1,4 @@
-package com.qa.sfly.Pages;
+package com.qa.sfly.pages;
 
 public class LoginPage {
 }

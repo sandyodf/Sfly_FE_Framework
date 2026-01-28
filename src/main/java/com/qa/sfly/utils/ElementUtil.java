@@ -1,4 +1,4 @@
-package com.qa.sfly.Utils;
+package com.qa.sfly.utils;
 
 public class ElementUtil {
 }
