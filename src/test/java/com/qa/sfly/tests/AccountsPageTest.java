@@ -7,35 +7,34 @@ import org.testng.annotations.Test;
 
 public class AccountsPageTest extends BaseTest {
 
-
-
     @BeforeClass
-
     public void loginSetup(){
-     acc=   lp.doLogin(prop.getProperty("username"), prop.getProperty("password"));
+        homepage=   loginpage.doLogin(prop.getProperty("username"), prop.getProperty("password"));
     }
 
     @Test
     public void acc_pageTitle(){
-        String pageTitle = acc.getPageTitle();
+        String pageTitle = homepage.getPageTitle();
         Assert.assertEquals(pageTitle,"My Account");
     }
 
     @Test
     public void acc_IsAccTest(){
-        boolean Myc = acc.isMyAccDisplayed();
+        boolean Myc = homepage.isMyAccDisplayed();
         Assert.assertTrue(Myc);
     }
     @Test
     public void acc_IsMyOrderTest(){
-        boolean acc_IsMyOrderTest = acc.isMyOrderDisplayed();
+        boolean acc_IsMyOrderTest = homepage.isMyOrderDisplayed();
         Assert.assertTrue(acc_IsMyOrderTest);
 
     }
 
     @Test
     public void searchProductTest(){
-        acc.searchForProduct("Macbook");
+        searchpage= homepage.searchForProduct("Macbook");
+     String searchTitle=   searchpage.getPageTitle();
+        Assert.assertEquals(searchTitle,"Search - macbook");
     }
 
 }

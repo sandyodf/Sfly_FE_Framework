@@ -7,4 +7,9 @@ public class SearchPage {
     public SearchPage(WebDriver driver) {
         this.driver=driver;
     }
+
+    public String getPageTitle() {
+        System.out.println("search Page title is : " + driver.getTitle());
+        return driver.getTitle();
+    }
 }
