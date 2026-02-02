@@ -3,6 +3,7 @@ package com.qa.sfly.base;
 import com.qa.sfly.factory.DriverFactory;
 import com.qa.sfly.pages.AccountsPage;
 import com.qa.sfly.pages.LoginPage;
+import com.qa.sfly.pages.ProductInfoPage;
 import com.qa.sfly.pages.SearchPage;
 import org.openqa.selenium.WebDriver;
 import org.testng.annotations.AfterTest;
@@ -19,6 +20,8 @@ public class BaseTest {
     protected AccountsPage homepage;
 
     protected SearchPage searchpage;
+
+    protected ProductInfoPage pip;
 
     @BeforeTest
     public void setup() {

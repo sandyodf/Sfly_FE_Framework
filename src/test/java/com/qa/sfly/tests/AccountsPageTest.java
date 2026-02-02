@@ -34,7 +34,12 @@ public class AccountsPageTest extends BaseTest {
     public void searchProductTest(){
         searchpage= homepage.searchForProduct("Macbook");
      String searchTitle=   searchpage.getPageTitle();
-        Assert.assertEquals(searchTitle,"Search - macbook");
+        Assert.assertEquals(searchTitle,"Search - Macbook");
+    }
+    @Test
+    public void selectProductTest(){
+//        searchpage= homepage.searchForProduct("Macbook");
+        searchpage.selectProduct("MacBook Air");
     }
 
 }
