@@ -5,7 +5,7 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 
-import java.util.HashMap;
+import java.util.LinkedHashMap;
 import java.util.List;
 
 public class ProductInfoPage {
@@ -21,7 +21,7 @@ public class ProductInfoPage {
     private final By  productPrice =By.xpath("(//div[@id='content']//ul[@class='list-unstyled'])[2]/li");
 
 
-    HashMap<String,Object> productMap;
+    LinkedHashMap<String,Object> productMap;
 
     public ProductInfoPage(WebDriver driver) {
         this.driver =driver;
@@ -37,16 +37,37 @@ public class ProductInfoPage {
         return elementutil.getWebElement(productHeader).getText();
     }
 
+    public LinkedHashMap<String,Object> getProductDetailMap(){
+        productMap = new LinkedHashMap<>();
+        productMap.put("productHeader",getProductHeaderInfo());
+        productMap.put("productImages",getImagesOfProduct());
+        getProductMetaData();
+        getProductPrice();
+return productMap;
+    }
 
-    public void getProductMetaData(){
+
+    private void getProductMetaData(){
       List<WebElement> metadata= elementutil.getWebElements(productMetaData,10);
-
+        System.out.println("No of elements " +metadata.size());
       for (WebElement elee : metadata){
-         String[] data= elee.getText().split(":");
-          System.out.println("Dd"+data[0]);
-          System.out.println("Dd"+data[1]);
+          System.out.println(elee.getText() );
+          String[] data= elee.getText().split(":");
+          String valueKey = data[0];
+          String valueOfKey = data[1].trim();
+          productMap.put(valueKey,valueOfKey);
+          productMap.put("productImages",getImagesOfProduct());
+          System.out.println(productMap);
+
       }
 
     }
-
+    private void getProductPrice(){
+        List<WebElement> webElements = elementutil.getWebElements(productPrice, 10);
+        String priceOfProduct = webElements.get(0).getText();
+        String priceTaxOfProduct = webElements.get(1).getText();
+        productMap.put("productPrice",priceOfProduct);
+        productMap.put("extraPrice",priceTaxOfProduct);
+        System.out.println("=="+productMap);
+    }
 }
