@@ -35,10 +35,10 @@ public class LoginPage {
         return driver.findElement(forgotPassword).isDisplayed();
     }
 
-    public  String doLogin(String username , String password){
+    public  AccountsPage doLogin(String username , String password){
         driver.findElement(email_txt).sendKeys(username);
         driver.findElement(password_txt).sendKeys(password);
         driver.findElement(submitBtn).click();
-        return getPageTitle();
+        return new AccountsPage(driver);
     }
 }

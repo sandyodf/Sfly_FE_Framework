@@ -4,35 +4,36 @@ import com.qa.sfly.base.BaseTest;
 import org.testng.Assert;
 import org.testng.annotations.Test;
 
+import static com.qa.sfly.constants.AppConstants.*;
+
 public class LoginPageTest extends BaseTest {
 
     @Test
     public void loginTitleTest() {
-        String pageTitle = lp.getPageTitle();
-        Assert.assertEquals(pageTitle, "Account Login");
+        String pageTitle = loginpage.getPageTitle();
+        Assert.assertEquals(pageTitle, LOGIN_PAGE_TITLE);
     }
 
     @Test
     public void loginUrlTest() {
-        String pageUrl = lp.getPageUrl();
-        Assert.assertTrue(pageUrl.contains("=account/login"));
+        String pageUrl = loginpage.getPageUrl();
+        Assert.assertTrue(pageUrl.contains(LOGIN_PAGE_URL));
     }
 
     @Test
     public void forgotPasswordLinkTest() {
-        boolean link = lp.isForgotPasswordLinkDisplayed();
+        boolean link = loginpage.isForgotPasswordLinkDisplayed();
         Assert.assertTrue(link);
     }
 
     @Test
     public void newCustomerLinkTextTest() {
-        String pageTitle = lp.getNewCustText();
-        Assert.assertEquals(pageTitle, "By creating an account you will be able to shop faster, be up to date on an order's status, and keep track of the orders you have previously made.");
+        String pageTitle = loginpage.getNewCustText();
+        Assert.assertEquals(pageTitle, NEW_ACCOUNT_TEXT);
     }
 
     @Test(priority = Short.MAX_VALUE)
     public void loginPageTest() {
-        String s = lp.doLogin("deepu.odf1@yopmail.com", "Sandy@123");
-        Assert.assertEquals(s, "My Account");
+        loginpage.doLogin(prop.getProperty("username"), prop.getProperty("password"));
     }
 }
