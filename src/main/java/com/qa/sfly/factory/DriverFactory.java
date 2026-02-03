@@ -17,10 +17,11 @@ public class DriverFactory {
     Properties prop;
 
     public WebDriver initiateBrowser(Properties props) {
-        String browser = props.getProperty("browser");
+        String browser = props.getProperty("browser").toLowerCase();
         switch (browser.trim().toLowerCase()) {
             case "chrome":
-                driver = new ChromeDriver();
+                OptionsManger op = new OptionsManger(props);
+                driver = new ChromeDriver(op.getChromeOptionsValue());
                 break;
             case "firefox":
                 driver = new FirefoxDriver();
@@ -28,7 +29,7 @@ public class DriverFactory {
             case "edge":
                 driver = new EdgeDriver();
                 break;
-            case "Safari":
+            case "safari":
                 driver = new SafariDriver();
                 break;
             default:

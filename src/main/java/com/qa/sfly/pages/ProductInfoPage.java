@@ -23,6 +23,7 @@ public class ProductInfoPage {
 
     LinkedHashMap<String,Object> productMap;
 
+
     public ProductInfoPage(WebDriver driver) {
         this.driver =driver;
         this.elementutil = new ElementUtil(this.driver);

@@ -40,6 +40,7 @@ public class AccountsPage {
     }
 
     public SearchPage searchForProduct(String product){
+        elem.getWebElement(search_btn).clear();
         elem.getWebElement(search_btn).sendKeys(product);
         elem.getWebElement(click_search).click();
         return new SearchPage(driver);

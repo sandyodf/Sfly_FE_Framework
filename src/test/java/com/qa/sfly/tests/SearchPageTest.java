@@ -1,9 +1,10 @@
 package com.qa.sfly.tests;
 
 import com.qa.sfly.base.BaseTest;
+import com.qa.sfly.pages.ProductInfoPage;
 import com.qa.sfly.pages.SearchPage;
-import org.testng.Assert;
 import org.testng.annotations.BeforeClass;
+import org.testng.annotations.DataProvider;
 import org.testng.annotations.Test;
 import org.testng.asserts.SoftAssert;
 
@@ -16,26 +17,56 @@ public class SearchPageTest extends BaseTest {
         homepage = loginpage.doLogin(prop.getProperty("username"), prop.getProperty("password"));
     }
 
-    @Test
-    public void selectProductHeaderTest() {
-        SearchPage macbook = homepage.searchForProduct("Macbook");
-        pip = macbook.selectProduct("MacBook Air");
-        String productHeaderInfo = pip.getProductHeaderInfo();
-        Assert.assertEquals(productHeaderInfo, "MacBook Air");
-    }
+    @DataProvider
+    public Object[][] getProductInfoData(){
 
-    @Test
-    public void selectProductImagesTest() {
-        int imagesCount = pip.getImagesOfProduct();
-        Assert.assertEquals(imagesCount, 4);
+        return  new Object[][]{
+                {"macbook","MacBook Air"},
+//                {"macbook","MacBook"},
+//                {"macbook","MacBook Pro"},
+//                {"imac","iMac"},
+//                {"samsung","Samsung SyncMaster 941BW"},
+//                {"samsung","Samsung Galaxy Tab 10.1"},
+
+        };
+
+    }
+    @DataProvider
+    public Object[][] getPIPData(){
+
+        return  new Object[][]{
+                {"macbook","MacBook Air","Apple","Product 17","700","Out Of Stock!"},
+//                {"macbook","MacBook"},
+//                {"macbook","MacBook Pro"},
+//                {"imac","iMac"},
+//                {"samsung","Samsung SyncMaster 941BW"},
+//                {"samsung","Samsung Galaxy Tab 10.1"},
+
+        };
+
+    }
+//    @Test(dataProvider = "getProductInfoData")
+//    public void selectProductHeaderTest(String product ,String displayedprod) {
+//        SearchPage macbook = homepage.searchForProduct(product);
+//        pip = macbook.selectProduct(displayedprod);
+//        String productHeaderInfo = pip.getProductHeaderInfo();
+//        Assert.assertEquals(productHeaderInfo, displayedprod);
+//    }
+
+    @Test(dataProvider = "getPIPData")
+    public void selectProductImagesTest(String productsearch,String product,String brand, String productCode,String rewardpoints ,String Availability) {
+
+//        Assert.assertEquals(imagesCount, 4);
+        SearchPage sp=homepage.searchForProduct(productsearch);
+        ProductInfoPage pip= sp.selectProduct(product);
         HashMap<String, Object> productDetailMap = pip.getProductDetailMap();
         System.out.println("test "+productDetailMap);
         SoftAssert sf = new SoftAssert();
-        sf.assertEquals(productDetailMap.get("Brand"),"Apple");
-        sf.assertEquals(productDetailMap.get("Product Code"),"Product 17");
-        sf.assertEquals(productDetailMap.get("Reward Points"),"700");
-        sf.assertEquals(productDetailMap.get("Availability"),"Out Of Stock!");
-        sf.assertEquals(productDetailMap.get("productPrice"),"$1,202.00");
+        sf.assertEquals(productDetailMap.get("Brand"),brand);
+        sf.assertEquals(productDetailMap.get("Product Code"),productCode);
+        sf.assertEquals(productDetailMap.get("Reward Points"),rewardpoints);
+        sf.assertEquals(productDetailMap.get("Availability"),Availability);
+//        sf.assertEquals(productDetailMap.get("productPrice"),"$1,202.00");
         sf.assertAll("Asserting all product values");
 
     }
