@@ -18,6 +18,7 @@ public class DriverFactory {
 
     public WebDriver initiateBrowser(Properties props) {
         String browser = props.getProperty("browser").toLowerCase();
+        System.out.println("browser is "+browser);
         switch (browser.trim().toLowerCase()) {
             case "chrome":
                 OptionsManger op = new OptionsManger(props);
@@ -44,15 +45,52 @@ public class DriverFactory {
     }
 
     public Properties initProp() {
+
+        String envName = System.getProperty("env");
+        FileInputStream ip = null;
         prop = new Properties();
+
         try {
-            FileInputStream fo = new FileInputStream("src/main/resources/config/config.properties");
-            prop.load(fo);
+            if (envName == null) {
+                // System.out.println("env is null, hence running the tests on QA env by
+                // default...");
+//                log.warn("env is null, hence running the tests on QA env by default...");
+                ip = new FileInputStream("./src/test/resources/config/qa.config.properties");
+            } else {
+                System.out.println("Running tests on env: " + envName);
+//                log.info("Running tests on env: " + envName);
+                switch (envName.toLowerCase().trim()) {
+                    case "qa":
+                        ip = new FileInputStream("./src/test/resources/config/qa.config.properties");
+                        break;
+                    case "dev":
+                        ip = new FileInputStream("./src/test/resources/config/dev.config.properties");
+                        break;
+                    case "stage":
+                        ip = new FileInputStream("./src/test/resources/config/stage.config.properties");
+                        break;
+                    case "uat":
+                        ip = new FileInputStream("./src/test/resources/config/uat.config.properties");
+                        break;
+                    case "prod":
+                        ip = new FileInputStream("src/main/resources/config/configprod.properties");
+                        break;
+
+                    default:
+//                        log.error("----invalid env name---" + envName);
+//                        throw new FrameworkException("===INVALID ENV NAME==== : " + envName);
+                }
+            }
         } catch (FileNotFoundException e) {
-            throw new RuntimeException(e);
-        } catch (IOException e) {
-            throw new RuntimeException(e);
+            e.printStackTrace();
         }
+
+        try {
+            prop.load(ip);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
         return prop;
     }
 

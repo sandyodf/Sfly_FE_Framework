@@ -16,6 +16,7 @@ public class LoginPage {
 //    deepu.odf1@yopmail.com/Sandy@123
     public LoginPage(WebDriver driver){
         this.driver=driver;
+
     }
 
     public String getPageTitle(){
