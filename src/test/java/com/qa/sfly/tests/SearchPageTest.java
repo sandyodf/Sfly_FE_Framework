@@ -35,7 +35,7 @@ public class SearchPageTest extends BaseTest {
     public Object[][] getPIPData(){
 
         return  new Object[][]{
-                {"macbook","MacBook Air","Apple","Product 17","700","Out Of Stock!"},
+                {"macbook","MacBook Air","Apple","Product 17","700","Out Of Stock"},
 //                {"macbook","MacBook"},
 //                {"macbook","MacBook Pro"},
 //                {"imac","iMac"},

@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
+<suite name="Open cart  E2E suite" thread-count="3" parallel="tests">
+    <test verbose="2" preserve-order="true"
+          name="home page tests" >
+        <classes>
+            <class name="com.qa.sfly.tests.AccountsPageTest">
+            </class>
+        </classes>
+    </test>
+    <test verbose="2" preserve-order="true"
+          name="Login page tests">
+        <classes>
+            <class name="com.qa.sfly.tests.LoginPageTest">
+            </class>
+        </classes>
+    </test>
+    <test verbose="2" preserve-order="true"
+          name="Search Page Test">
+        <classes>
+            <class name="com.qa.sfly.tests.SearchPageTest">
+            </class>
+        </classes>
+    </test>
+</suite>

@@ -1,38 +1,90 @@
+# ==============================
+# OS Files
+# ==============================
+.DS_Store
+Thumbs.db
+
+# ==============================
+# Maven
+# ==============================
 target/
-!.mvn/wrapper/maven-wrapper.jar
-!**/src/main/**/target/
-!**/src/test/**/target/
+pom.xml.tag
+pom.xml.releaseBackup
+pom.xml.versionsBackup
+pom.xml.next
+release.properties
+dependency-reduced-pom.xml
+buildNumber.properties
 
-### IntelliJ IDEA ###
-.idea/modules.xml
-.idea/jarRepositories.xml
-.idea/compiler.xml
-.idea/libraries/
-*.iws
+# ==============================
+# Compiled Class Files
+# ==============================
+*.class
+
+# ==============================
+# IntelliJ IDEA
+# ==============================
+.idea/
 *.iml
-*.ipr
+out/
 
-### Eclipse ###
-.apt_generated
-.classpath
-.factorypath
+# ==============================
+# Eclipse
+# ==============================
 .project
-.settings
-.springBeans
-.sts4-cache
+.classpath
+.settings/
 
-### NetBeans ###
-/nbproject/private/
-/nbbuild/
-/dist/
-/nbdist/
-/.nb-gradle/
-build/
-!**/src/main/**/build/
-!**/src/test/**/build/
-
-### VS Code ###
+# ==============================
+# VS Code
+# ==============================
 .vscode/
 
-### Mac OS ###
-.DS_Store
+# ==============================
+# TestNG Reports
+# ==============================
+test-output/
+emailable-report.html
+testng-failed.xml
+surefire-reports/
+
+# ==============================
+# Logs
+# ==============================
+logs/
+*.log
+
+# ==============================
+# Screenshots (if framework stores them)
+# ==============================
+screenshots/
+
+# ==============================
+# Allure / Extent Reports (if used)
+# ==============================
+allure-results/
+allure-report/
+extent-report/
+
+# ==============================
+# Environment Files
+# ==============================
+.env
+*.properties
+config/*.properties
+
+# Keep sample config
+!config/config-example.properties
+
+# ==============================
+# Driver Binaries (Optional)
+# ==============================
+drivers/
+*.exe
+
+# ==============================
+# Temporary Files
+# ==============================
+*.tmp
+*.swp
+*.swo
