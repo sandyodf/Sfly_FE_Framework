@@ -12,13 +12,13 @@ import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.util.Properties;
 
-public class DriverFactory {
+public class  DriverFactory {
     WebDriver driver;
     Properties prop;
 
     public WebDriver initiateBrowser(Properties props) {
         String browser = props.getProperty("browser").toLowerCase();
-        System.out.println("browser is "+browser);
+        System.out.println("browser is envoked using ngrok "+browser);
         switch (browser.trim().toLowerCase()) {
             case "chrome":
                 OptionsManger op = new OptionsManger(props);
