@@ -11,7 +11,7 @@
     </test>
     <test verbose="2" preserve-order="true"
           name="Login page tests">
-        <parameter name="browser" value="edge"/>
+        <parameter name="browser" value="chrome"/>
         <classes>
             <class name="com.qa.sfly.tests.LoginPageTest">
             </class>
